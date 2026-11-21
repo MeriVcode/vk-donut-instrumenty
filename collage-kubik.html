@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#faf5ec">
+<title>Мастерская М. Братухиной — Мой генератор коллажей</title>
+<style>
+:root{--bg:#faf5ec;--surface:#fffefa;--ink:#403747;--muted:#817983;--stroke:#e9e0d9;--accent:#8966a4;--pale:#f4eaf8;--shadow:0 18px 54px rgba(77,52,67,.07);font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 12% 2%,#f5eaf6 0,transparent 380px),radial-gradient(circle at 90% 13%,#ffefd9 0,transparent 490px),var(--bg);color:var(--ink);font:15px/1.46 "Segoe UI",Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focus-visible{outline:3px solid #b998d4;outline-offset:3px}
+.shell{max-width:1580px;margin:auto;padding:25px clamp(12px,2.4vw,35px) 40px}
+.top{display:flex;align-items:center;gap:16px;margin-bottom:15px}.logo{width:66px;height:66px;border-radius:22px;background:linear-gradient(145deg,#eee0f1,#f9e8cd);color:#8964a2;display:grid;place-items:center;flex:none;box-shadow:inset 0 2px 4px #ffffff90}.logo svg{width:38px}.brand-initials{font:900 27px/1 "Trebuchet MS","Segoe UI",sans-serif;letter-spacing:-.09em;color:#795a97}.brand-initials small{font-size:14px;letter-spacing:0;vertical-align:top;margin-left:2px}.kicker{text-transform:uppercase;letter-spacing:.15em;color:#9a7b98;font-size:11px;font-weight:800;margin:0 0 3px}h1{font:800 clamp(27px,3vw,42px)/1.1 "Trebuchet MS","Segoe UI",sans-serif;letter-spacing:-.045em;margin:0}.lede{margin:7px 0 0;color:#817781;font-size:14px}.tutorial{display:inline-flex;align-items:center;gap:9px;border:1px solid #eddfce;background:#fff9ef;border-radius:999px;padding:8px 15px;color:#857262;font-size:12px;font-weight:700;margin:8px 0 18px}
+.app{display:grid;grid-template-columns:minmax(335px,435px) minmax(0,1fr);gap:24px;align-items:start}.side,.right{min-width:0}.panel{background:var(--surface);border:1px solid var(--stroke);border-radius:25px;box-shadow:var(--shadow);padding:23px}.side h2{font:800 20px/1.2 "Trebuchet MS","Segoe UI",sans-serif;letter-spacing:-.018em;display:flex;align-items:center;gap:9px;margin:0 0 12px}.num{display:inline-grid;place-items:center;width:29px;height:29px;flex:none;border-radius:10px;background:#f0e6f7;color:#805c9a;font:800 13px "Segoe UI",sans-serif}.subtle{margin:0 0 13px;color:var(--muted);font-size:12.5px}.rule{border:0;border-top:1px solid #eee7e0;margin:23px 0}.field-label{display:block;font-weight:750;font-size:13px;margin:16px 0 8px}.input{width:100%;background:#fff;border:1px solid #e7ddd8;color:var(--ink);border-radius:12px;padding:11px 13px;min-height:43px}.input:focus{outline:none;border-color:#bb9bcb;box-shadow:0 0 0 3px #e1caee66}.micro{color:#8d838b;font-size:11px;margin:6px 0 0}
+.drop{border:2px dashed #d1b7dc;background:#fbf5fc;border-radius:18px;min-height:133px;display:grid;place-items:center;text-align:center;padding:17px 12px;transition:.17s;cursor:pointer}.drop:hover,.drop.dragging{background:#f1e5f7;border-color:#a587ba}.drop svg{width:32px;height:32px;stroke:#9d7cb5;margin-bottom:3px}.drop strong{display:block;font-size:14px}.drop span{font-size:12px;color:#857b8d}.hidden{display:none!important}.line{display:flex;align-items:center;justify-content:space-between;gap:9px}.count{display:inline-block;background:#f1e8f6;color:#805f94;padding:4px 11px;border-radius:100px;font-size:12px;font-weight:800}.list{display:grid;gap:9px;margin-top:13px}.photo{display:grid;grid-template-columns:60px minmax(0,1fr) 29px;gap:9px;align-items:center;padding:9px;background:#faf8f4;border:1px solid #eee7df;border-radius:13px}.photo.drag-source{opacity:.4}.photo.drop-target{border-color:#bb9bcb;background:#f5ecf8}.thumb{width:60px;height:69px;object-fit:cover;border-radius:9px;background:#efe9e5;display:block}.ptext{min-width:0}.pname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:750;font-size:11.5px;margin-bottom:6px}.pcaption{border:1px solid #e8dfd9;border-radius:8px;padding:8px;font-size:12px;width:100%;background:white;min-width:0}.pcontrols{display:flex;flex-direction:column;gap:3px}.iconbtn{height:23px;width:28px;background:white;border:1px solid #e8dcd9;border-radius:7px;color:#756978;font-size:15px;padding:0;line-height:1}.iconbtn:hover{border-color:#a58bc1;color:#7b5299}.iconbtn:disabled{opacity:.27}.iconbtn.remove{color:#ba6864}.sort-note{margin:8px 0 0;color:#938792;font-size:11px}
+.layout-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.layout-choice{display:flex;align-items:center;gap:9px;text-align:left;background:#fff;border:1px solid #e8e0dc;border-radius:12px;padding:10px;min-height:65px;color:#615668;font-size:12px;font-weight:750}.layout-choice:hover{border-color:#b297c4}.layout-choice[aria-pressed=true]{background:#f5edf8;border-color:#aa87c0;color:#664d80;box-shadow:0 0 0 1px #aa87c02b inset}.layout-choice svg{width:39px;height:37px;flex:none;stroke:#a88eb4;fill:#eadbf1;stroke-width:1.4}.layout-choice[aria-pressed=true] svg{stroke:#795990;fill:#d3b6e6}
+.segment{display:flex;gap:7px;flex-wrap:wrap}.segment .choice{flex:1 1 105px;padding:10px 8px;border:1px solid #e8dfdc;border-radius:10px;background:#fff;color:#6d626c;font-size:12px;font-weight:750}.segment .choice:hover{border-color:#ab90be}.segment .choice[aria-pressed=true]{color:#74528a;background:#f3e9f8;border-color:#b392c8;box-shadow:0 0 0 1px #c0a8cb40 inset}
+.themes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.themebtn{background:#fff;border:1px solid #e8deda;border-radius:12px;padding:10px 5px;font-weight:750;font-size:11px;color:#6a6067}.themebtn[aria-pressed=true]{background:#fdf7ff;border-color:#ad8bbf;box-shadow:0 0 0 1px #ac8cbf inset}.swatch{display:block;width:38px;height:31px;border-radius:10px;margin:0 auto 7px;border:3px solid white;box-shadow:0 0 0 1px #eee7e1}.lav{background:linear-gradient(125deg,#e4cce9 50%,#9877b6 50%)}.beige{background:linear-gradient(125deg,#f3debd 50%,#ae8266 50%)}.mint{background:linear-gradient(125deg,#d9f0df 50%,#679a86 50%)}
+.options2{display:grid;grid-template-columns:1fr 1fr;gap:11px}.options2 .field-label{margin-top:12px}.range-row{display:flex;align-items:center;gap:12px}.range-row input[type=range]{flex:1;min-width:0;accent-color:#9c7bb0}.range-row output{color:#7d658e;font-weight:800;min-width:29px;text-align:right;font-size:12px}.check{display:flex;align-items:center;gap:8px;color:#615866;font-size:12.5px;font-weight:700;margin-top:12px}.check input{accent-color:#9572ae;width:17px;height:17px}.magic{width:100%;border:1px solid #d8c3e4;background:linear-gradient(110deg,#f6eafb,#fff7e6);border-radius:12px;font-weight:850;color:#79548f;padding:13px 12px;margin-top:17px}.magic:hover{background:linear-gradient(110deg,#e9d6f4,#fdf0d8)}.privacy{font-size:11.5px;color:#818076;margin:16px 0 0;display:flex;gap:7px;align-items:flex-start}.privacy svg{color:#71977c;flex:none;width:17px}
+.right{position:sticky;top:15px}.previewhead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:15px}.previewhead h2{font:800 21px "Trebuchet MS",sans-serif;letter-spacing:-.025em;margin:0}.pill{font-size:12px;color:#80688b;background:#f3eaf7;border-radius:999px;padding:6px 10px;font-weight:750}.stage{min-height:350px;background:linear-gradient(140deg,#efe9e5,#f6eee3);padding:14px;display:grid;place-items:center;border-radius:19px;overflow:hidden}.stage canvas{display:block;width:100%;max-width:680px;height:auto;box-shadow:0 8px 30px #4c3c5440;background:#fff}.previewdesc{text-align:center;font-size:12px;color:#857d86;margin:12px 0 14px}.actions{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}.download{border:0;border-radius:12px;padding:15px 12px;background:#8263a0;color:white;font-size:14px;font-weight:850;box-shadow:0 7px 17px #80649c2e}.download:hover:not(:disabled){background:#6d4a90}.download:disabled{background:#c6b9cb;box-shadow:none}.clear{border:1px solid #e5dcd6;border-radius:12px;padding:12px 19px;background:white;color:#776975;font-weight:750}.clear:hover{background:#faf2f6}.help{text-align:center;color:#867389;font-size:12px;margin:11px 0 0;min-height:20px}.notice{font-size:12px;line-height:1.45;color:#8e5c3d;background:#fff1e5;border:1px solid #f0d4b7;border-radius:11px;padding:10px 12px;margin-top:10px}.notice:empty{display:none}.foot{text-align:center;color:#a09498;font-size:12px;margin:22px 0 0}.toast{position:fixed;left:50%;bottom:23px;z-index:20;max-width:min(550px,calc(100vw - 20px));transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#4b3a54;color:white;box-shadow:0 12px 35px #0003;border-radius:12px;padding:12px 18px;text-align:center;font-size:13px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1150px){.app{grid-template-columns:minmax(320px,390px) minmax(0,1fr);gap:14px}.panel{padding:18px}.stage{padding:9px}}
+@media(max-width:820px){.app{grid-template-columns:1fr}.right{position:static;grid-row:1}.side{grid-row:2}.shell{padding:15px 12px 30px}.stage{min-height:0}.top{margin-bottom:14px}.tutorial{margin-bottom:14px}.previewhead h2{font-size:19px}}
+@media(max-width:460px){.logo{height:53px;width:53px;border-radius:15px}.logo svg{width:32px}.lede{font-size:12px}.panel{padding:14px;border-radius:18px}.layout-choice{padding:7px 6px;font-size:11px;gap:5px}.layout-choice svg{width:29px;height:29px}.tutorial{font-size:10.5px;padding:7px 10px}.actions{grid-template-columns:minmax(0,1fr) 90px}.clear{padding:9px}.download{font-size:12px;padding:11px 7px}.stage{border-radius:12px;padding:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+.photometa{font-size:11px;color:#7c8a84;margin:-3px 0 6px;font-weight:650}
+.layout-hint{border-radius:12px;background:#eff7f0;border:1px solid #d9eadb;color:#3d6c54;padding:11px 12px;font-size:12px;font-weight:750;line-height:1.45;margin-top:11px}
+.frame-info{background:#fffaf2;border:1px solid #eddfcb;border-radius:14px;padding:12px 13px;margin-top:13px;color:#665b50;font-size:12px;line-height:1.55}
+.frame-info-title{font-size:13px;font-weight:850;color:#5b4e64;margin-bottom:5px}
+#frameSpecs{overflow-wrap:anywhere;color:#4d5d50;font-weight:750}
+#recommendedSize{margin:8px 0 0;color:#655671;font-weight:750}
+#ratioAdvice{margin:8px 0 0;color:#8a786c}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="logo" aria-label="Фирменный значок Мастерской М. Братухиной"><svg viewBox="0 0 70 70" role="img" aria-label="Иконка из фотокарточек и звёздочки с монограммой МБ"><rect x="12" y="10" width="42" height="44" rx="9" fill="#a8d5bf" transform="rotate(-13 33 32)"/><rect x="17" y="14" width="42" height="44" rx="9" fill="#9878ae" stroke="#fffaf5" stroke-width="2.5" transform="rotate(7 38 36)"/><rect x="23" y="19" width="30" height="29" rx="5" fill="#fffafc" opacity=".22" transform="rotate(7 38 36)"/><text x="39" y="43" fill="#fff" font-family="Arial,sans-serif" font-size="20" font-weight="900" text-anchor="middle">МБ</text><path d="M55 5 58.4 13.8 67 17 58.4 20.4 55 29 51.6 20.4 43 17 51.6 13.8Z" fill="#e2b660" stroke="#fffaf5" stroke-width="2"/></svg></div><div><p class="kicker">Мастерская М. Братухиной · Авторские инструменты</p><h1>Мой генератор коллажей</h1><p class="lede">Создайте красивую фотоисторию в стиле авторского журнала.</p></div></header>
+<div class="tutorial">✦ Загрузите изображения → Настройте коллаж → Скачайте результат</div>
+<div class="app">
+<div class="side"><section class="panel" aria-label="Создание коллажа">
+<h2><span class="num">1</span> Добавьте фотографии</h2><p class="subtle">От 3 до 6 изображений JPG, PNG или WEBP. Для аккуратного коллажа лучше использовать фотографии близких пропорций.</p>
+<input class="hidden" type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+<div class="drop" id="dropZone" role="button" tabindex="0" aria-label="Выбрать изображения с компьютера"><div><svg viewBox="0 0 36 36" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="30" height="24" rx="5"/><circle cx="12" cy="15" r="3"/><path d="m6 27 9-10 6 6 5-5 7 9"/><path d="M18 3v10m-5-5h10"/></svg><strong>Выбрать фотографии</strong><span>или перетащить файлы сюда</span></div></div>
+<div class="line" style="margin-top:13px"><span class="subtle" style="margin:0">Загружено фотографий</span><span class="count" id="count">0 / 6</span></div><div class="notice" id="notice" role="alert"></div>
+<div class="list" id="photoList"></div><p class="sort-note" id="sortNote" hidden>Меняйте порядок кнопками ↑ ↓ или перетаскивайте карточки.</p>
+<hr class="rule">
+<h2><span class="num">2</span> Выберите оформление</h2>
+<label class="field-label" for="title">Заголовок коллажа</label><input class="input" type="text" id="title" maxlength="80" placeholder="Например, Наши школьные открытия">
+<div class="field-label" id="modeLabel">Стиль страницы</div><div class="segment" role="group" aria-labelledby="modeLabel"><button type="button" class="choice" data-key="mode" data-value="journal" aria-pressed="true">✦ Авторский журнал</button><button type="button" class="choice" data-key="mode" data-value="simple" aria-pressed="false">Лаконичный</button></div>
+<label class="field-label" for="visibleCount">Сколько фотографий показать</label>
+<select class="input" id="visibleCount" aria-describedby="visibleHelp"><option value="all">Все загруженные</option></select>
+<p class="micro" id="visibleHelp">Если загружено 6 фотографий, можно создать коллаж из первых 4, не удаляя остальные. Порядок меняйте стрелками ↑ ↓.</p>
+<div class="field-label" id="layoutLabel">Макет фотографий</div>
+<div class="layout-grid" role="group" aria-labelledby="layoutLabel">
+<button class="layout-choice" data-key="layout" data-value="grid" aria-pressed="true"><svg viewBox="0 0 42 36"><rect x="3" y="3" width="16" height="13" rx="2"/><rect x="23" y="3" width="16" height="13" rx="2"/><rect x="3" y="20" width="16" height="13" rx="2"/><rect x="23" y="20" width="16" height="13" rx="2"/></svg>Ровная сетка</button>
+<button class="layout-choice" data-key="layout" data-value="cards" aria-pressed="false"><svg viewBox="0 0 42 36"><rect x="3" y="5" width="18" height="27" rx="2"/><rect x="23" y="3" width="16" height="27" rx="2"/><path d="M6 25h12M26 24h10"/></svg>Фотокарточки</button>
+<button class="layout-choice" data-key="layout" data-value="editorial" aria-pressed="false"><svg viewBox="0 0 42 36"><rect x="3" y="3" width="22" height="30" rx="2"/><rect x="28" y="3" width="11" height="13" rx="2"/><rect x="28" y="20" width="11" height="13" rx="2"/></svg>Журнальный</button>
+<button class="layout-choice" data-key="layout" data-value="mosaic" aria-pressed="false"><svg viewBox="0 0 42 36"><rect x="3" y="3" width="22" height="14" rx="2"/><rect x="28" y="3" width="11" height="14" rx="2"/><rect x="3" y="20" width="11" height="13" rx="2"/><rect x="17" y="20" width="22" height="13" rx="2"/></svg>Мозаика</button>
+<button class="layout-choice" data-key="layout" data-value="hero" aria-pressed="false"><svg viewBox="0 0 42 36"><rect x="3" y="3" width="36" height="20" rx="2"/><rect x="3" y="26" width="10" height="7" rx="1"/><rect x="16" y="26" width="10" height="7" rx="1"/><rect x="29" y="26" width="10" height="7" rx="1"/></svg>Главное фото</button>
+<button class="layout-choice" data-key="layout" data-value="film" aria-pressed="false"><svg viewBox="0 0 42 36"><rect x="2" y="5" width="38" height="26" rx="2"/><rect x="5" y="11" width="14" height="14" rx="2"/><rect x="23" y="11" width="14" height="14" rx="2"/><path d="M6 8h4m6 0h4m6 0h4m6 0h2M6 28h4m6 0h4m6 0h4m6 0h2"/></svg>Фотолента</button>
+</div>
+<div class="layout-hint" id="layoutHint" role="status" aria-live="polite">Для 6 горизонтальных фото — схема 2 × 3, без узких полос.</div>
+<div class="field-label" id="shapeLabel">Как ориентированы ваши фотографии?</div>
+<div class="segment" role="group" aria-labelledby="shapeLabel"><button class="choice" type="button" data-key="shape" data-value="landscape" aria-pressed="true">▭ Горизонтальные</button><button class="choice" type="button" data-key="shape" data-value="portrait" aria-pressed="false">▯ Квадратные / вертикальные</button></div>
+<p class="micro">Для шести горизонтальных фотографий приложение использует 2 столбца × 3 ряда. Так каждое изображение остаётся достаточно крупным.</p>
+<div class="frame-info"><div class="frame-info-title">Размеры кадров в готовом PNG</div><div id="frameSpecs">Размеры появятся после выбора макета.</div><p id="recommendedSize"></p><p id="ratioAdvice"></p></div>
+<div class="field-label" id="sizeLabel">Формат изображения</div><div class="segment" role="group" aria-labelledby="sizeLabel"><button class="choice" data-key="size" data-value="square" aria-pressed="true">Квадрат<br>1600 × 1600</button><button class="choice" data-key="size" data-value="portrait" aria-pressed="false">Пост<br>1600 × 2000</button><button class="choice" data-key="size" data-value="story" aria-pressed="false">История<br>1080 × 1920</button></div>
+<div class="field-label" id="themeLabel">Палитра</div><div class="themes" role="group" aria-labelledby="themeLabel"><button class="themebtn" data-key="theme" data-value="lavender" aria-pressed="true"><span class="swatch lav"></span>Лаванда</button><button class="themebtn" data-key="theme" data-value="beige" aria-pressed="false"><span class="swatch beige"></span>Тёплый беж</button><button class="themebtn" data-key="theme" data-value="mint" aria-pressed="false"><span class="swatch mint"></span>Мята</button></div>
+<div class="field-label" id="fitLabel">Размещение фото</div><div class="segment" role="group" aria-labelledby="fitLabel"><button class="choice" data-key="fit" data-value="cover" aria-pressed="true">Заполнить кадр</button><button class="choice" data-key="fit" data-value="contain" aria-pressed="false">Показать целиком</button></div><p class="micro">Пропорции фотографий сохраняются. «Заполнить кадр» может обрезать края, «Показать целиком» оставляет поля.</p>
+<hr class="rule">
+<h2><span class="num">3</span> Детали оформления</h2>
+<div class="options2"><div><label class="field-label" for="font">Шрифт заголовка</label><select class="input" id="font"><option value="serif">Журнальный</option><option value="sans">Современный</option><option value="soft">Мягкий</option></select></div><div><label class="field-label" for="align">Выравнивание</label><select class="input" id="align"><option value="left">По левому краю</option><option value="center">По центру</option></select></div></div>
+<label class="field-label" for="titleSize">Размер заголовка</label><div class="range-row"><input type="range" id="titleSize" min="44" max="92" step="2" value="70"><output id="titleSizeOut">70</output></div>
+<label class="field-label" for="gap">Расстояние между фото</label><div class="range-row"><input type="range" id="gap" min="0" max="46" step="2" value="20"><output id="gapOut">20</output></div>
+<label class="field-label" for="radius">Скругление углов</label><div class="range-row"><input type="range" id="radius" min="0" max="46" step="2" value="16"><output id="radiusOut">16</output></div>
+<label class="check"><input type="checkbox" id="captions" checked> Показывать подписи к фотографиям</label>
+<button type="button" id="surprise" class="magic">✦ Удиви меня! — подобрать оформление</button>
+<p class="privacy"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="12" height="10" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg><span>Работает без сервера и интернета. Фотографии не покидают ваш компьютер.</span></p>
+</section></div>
+<main class="right panel" aria-label="Предпросмотр коллажа"><div class="previewhead"><h2>Ваша фотоистория ✨</h2><span class="pill" id="dimensions">1600 × 1600 px</span></div><div class="stage"><canvas id="collage" width="1600" height="1600" role="img" aria-label="Предпросмотр коллажа">Для просмотра нужен браузер с поддержкой canvas.</canvas></div><p class="previewdesc">Вы видите именно то, что сохранится в PNG. В правом нижнем углу будет небольшой фирменный значок.</p><div class="actions"><button id="download" type="button" class="download" disabled>↓ Скачать коллаж в PNG</button><button id="clear" type="button" class="clear">Очистить</button></div><p id="help" class="help" role="status" aria-live="polite">Добавьте минимум 3 фотографии, чтобы скачать коллаж.</p></main>
+</div><p class="foot">Мастерская М. Братухиной · Творите, сохраняйте, делитесь</p>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!-- Кубик-помощник встроен ниже; он не выводится на коллаже и в PNG. -->
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),canvas=$('collage'),ctx=canvas.getContext('2d',{alpha:false}),MIN=3,MAX=6;
+const sizes={square:[1600,1600],portrait:[1600,2000],story:[1080,1920]};
+const palettes={lavender:{bg:'#eee5f3',paper:'#fffafd',ink:'#42374a',muted:'#796d80',accent:'#9878ae',soft:'#dcc7e8',frame:'#e0d4e8',shadow:'#877495',light:'#f6eef9'},beige:{bg:'#f5ecdf',paper:'#fffaf2',ink:'#4a3b32',muted:'#85756d',accent:'#ac8469',soft:'#e7ceb5',frame:'#e8d9c6',shadow:'#927f70',light:'#faf2e5'},mint:{bg:'#e6f1e8',paper:'#fbfff9',ink:'#2c4a42',muted:'#6d8376',accent:'#719c8c',soft:'#c2dfce',frame:'#dae7db',shadow:'#758c80',light:'#f1faf3'}};
+const defaults={layout:'grid',mode:'journal',size:'square',theme:'lavender',fit:'cover',shape:'landscape',visibleCount:'all',title:'',font:'serif',align:'left',titleSize:70,gap:20,radius:16,captions:true};
+const state={...defaults,photos:[]};let serial=1,version=0,renderPending=false,alertTimer;
+function note(message){$('notice').textContent=message||''}
+function toast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(alertTimer);alertTimer=setTimeout(()=>t.classList.remove('show'),3000)}
+
+function kubikReact(gesture,message){
+ const K=window.KubikHelper;
+ if(!K || !K.isEnabled() || K.isCollapsed())return; // Уважать решение пользователя свернуть Кубика.
+ if(gesture==='celebrate')K.celebrate();else if(gesture==='wink')K.wink();else K.wave();
+ if(message)K.say(message,4400);
+}
+function plural(n){return n===1?'фотографию':n>=2&&n<=4?'фотографии':'фотографий'}
+function visiblePhotos(){const k=state.visibleCount==='all'?state.photos.length:Math.min(Number(state.visibleCount)||state.photos.length,state.photos.length);return state.photos.slice(0,k)}
+function sync(){const n=state.photos.length;const v=visiblePhotos().length;const sel=$('visibleCount');const prev=sel.value;sel.replaceChildren();const allOpt=new Option(`Все загруженные (${n})`,'all');sel.add(allOpt);for(let i=3;i<=n;i++)sel.add(new Option(`Первые ${i} ${plural(i)}`,String(i)));sel.value=state.visibleCount;sel.disabled=n<4;$('count').textContent=n+' / 6';$('sortNote').hidden=n<2;$('download').disabled=n<MIN;$('help').textContent=v<MIN?`Добавьте ещё ${MIN-v} ${plural(MIN-v)}, чтобы скачать коллаж.`:`В коллаже ${v} из ${n} фотографий. Можно скачать PNG.`;$('dimensions').textContent=sizes[state.size].join(' × ')+' px';document.querySelectorAll('[data-key]').forEach(b=>b.setAttribute('aria-pressed',String(state[b.dataset.key]===b.dataset.value)));$('title').value=state.title;$('font').value=state.font;$('align').value=state.align;$('captions').checked=state.captions;for(const key of ['gap','radius','titleSize']){$(key).value=state[key];$(key+'Out').textContent=state[key];}renderPhotos();schedule()}
+const MAX_MB=30*1024*1024;
+function imageFromURL(url){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>img.naturalWidth>0?resolve(img):reject(new Error('Нет изображения'));img.onerror=()=>reject(new Error('Не удалось открыть файл'));img.src=url;})}
+async function prepare(file){const url=URL.createObjectURL(file);let temp;try{temp=await imageFromURL(url);const ratio=Math.min(1,2400/Math.max(temp.naturalWidth,temp.naturalHeight));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(temp.naturalWidth*ratio));c.height=Math.max(1,Math.round(temp.naturalHeight*ratio));const x=c.getContext('2d');x.drawImage(temp,0,0,c.width,c.height);const type=file.type==='image/jpeg'?'image/jpeg':'image/png';const blob=await new Promise(res=>c.toBlob(res,type,.91));if(!blob)throw new Error('Не получилось обработать изображение');const processed=URL.createObjectURL(blob);try{const img=await imageFromURL(processed);return{id:serial++,name:file.name,caption:'',sourceWidth:temp.naturalWidth,sourceHeight:temp.naturalHeight,url:processed,img};}catch(e){URL.revokeObjectURL(processed);throw e}}finally{URL.revokeObjectURL(url)}}
+async function addFiles(input){const files=Array.from(input||[]);if(!files.length)return;const run=version;let invalid=0,over=0,error=0,skipped=0,added=0;$('dropZone').setAttribute('aria-busy','true');try{for(const file of files){if(run!==version)break;if(state.photos.length>=MAX){skipped++;continue}const valid=['image/jpeg','image/png','image/webp'].includes(file.type)||(!file.type&&/\.(jpe?g|png|webp)$/i.test(file.name));if(!valid){invalid++;continue}if(file.size>MAX_MB){over++;continue}try{const photo=await prepare(file);if(run!==version){URL.revokeObjectURL(photo.url);break}state.photos.push(photo);added++;sync()}catch(e){error++}}}finally{$('dropZone').removeAttribute('aria-busy');$('fileInput').value=''}const errors=[];if(invalid)errors.push(`${invalid} неподходящих файлов: нужны JPG, PNG или WEBP`);if(over)errors.push(`${over} файлов больше 30 МБ`);if(error)errors.push(`${error} изображений не открылись`);if(skipped)errors.push(`Можно добавить не больше ${MAX} фотографий`);note(errors.join('. '));if(added){
+ toast(`Добавлено ${added} ${plural(added)}`);
+ if(state.photos.length>=3)kubikReact('celebrate','Фотографии загружены! Выберите макет и оформление — ваш коллаж почти готов.');
+ else kubikReact('wave',`Добавьте ещё ${3-state.photos.length} ${plural(3-state.photos.length)}, чтобы создать коллаж.`);
+ }
+ if(!added&&errors.length){toast(errors.join('. '));kubikReact('wink','Нужны изображения JPG, PNG или WEBP размером до 30 МБ.')}}
+function move(from,to){if(to<0||to>=state.photos.length||from===to)return;const a=state.photos.splice(from,1)[0];state.photos.splice(to,0,a);sync()}
+function remove(id){const i=state.photos.findIndex(p=>p.id===id);if(i===-1)return;URL.revokeObjectURL(state.photos[i].url);state.photos.splice(i,1);note('');sync()}
+function renderPhotos(){const host=$('photoList');host.replaceChildren();state.photos.forEach((p,i)=>{const row=document.createElement('div');row.className='photo';row.draggable=true;row.dataset.id=p.id;const img=document.createElement('img');img.className='thumb';img.src=p.url;img.alt=`Фото ${i+1}`;const txt=document.createElement('div');txt.className='ptext';const label=document.createElement('div');label.className='pname';label.textContent=`${i+1}. ${p.name}`;label.title=p.name;const meta=document.createElement('div');meta.className='photometa';meta.textContent=`${p.sourceWidth} × ${p.sourceHeight} px · ${p.sourceWidth>=p.sourceHeight?'горизонтальное':'вертикальное'}`;const caption=document.createElement('input');caption.type='text';caption.className='pcaption';caption.placeholder='Подпись (необязательно)';caption.maxLength=60;caption.value=p.caption;caption.setAttribute('aria-label',`Подпись к фото ${i+1}`);caption.addEventListener('input',e=>{p.caption=e.target.value;schedule()});txt.append(label,meta,caption);const controls=document.createElement('div');controls.className='pcontrols';for(const [symbol,title,fn,disabled,klass] of [['↑','Поднять фотографию',()=>move(i,i-1),i===0,''],['↓','Опустить фотографию',()=>move(i,i+1),i===state.photos.length-1,''],['×','Удалить фотографию',()=>remove(p.id),false,'remove']]){const b=document.createElement('button');b.type='button';b.className='iconbtn '+klass;b.textContent=symbol;b.title=title;b.setAttribute('aria-label',title);b.disabled=disabled;b.addEventListener('click',fn);controls.append(b)}row.append(img,txt,controls);row.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(p.id));e.dataTransfer.effectAllowed='move';row.classList.add('drag-source')});row.addEventListener('dragend',()=>{row.classList.remove('drag-source');host.querySelectorAll('.drop-target').forEach(e=>e.classList.remove('drop-target'))});row.addEventListener('dragover',e=>{e.preventDefault();row.classList.add('drop-target')});row.addEventListener('dragleave',()=>row.classList.remove('drop-target'));row.addEventListener('drop',e=>{e.preventDefault();row.classList.remove('drop-target');const dragged=+e.dataTransfer.getData('text/plain');const a=state.photos.findIndex(v=>v.id===dragged);const b=state.photos.findIndex(v=>v.id===p.id);if(a!==-1&&b!==-1)move(a,b)});host.append(row)})}
+function schedule(){if(renderPending)return;renderPending=true;requestAnimationFrame(()=>{renderPending=false;draw()})}
+function rect(x,y,w,h,r){const rr=Math.max(0,Math.min(r,w/2,h/2));ctx.beginPath();if(ctx.roundRect){ctx.roundRect(x,y,w,h,rr)}else{ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath()}}
+function fill(x,y,w,h,r,color){ctx.fillStyle=color;rect(x,y,w,h,r);ctx.fill()}
+function line(x,y,X,Y,color,width=2){ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.moveTo(x,y);ctx.lineTo(X,Y);ctx.stroke()}
+function fontFamily(){return state.font==='serif'?'Georgia, "Times New Roman", serif':state.font==='soft'?'"Trebuchet MS", "Segoe UI", sans-serif':'"Segoe UI", Arial, sans-serif'}
+function titleLines(str,maxW,fontsize,maxLines=2){const words=String(str).trim().split(/\s+/).filter(Boolean);let lines=[],current='';ctx.font=`${state.font==='serif'?700:800} ${fontsize}px ${fontFamily()}`;for(const word of words){const candidate=current?current+' '+word:word;if(!current||ctx.measureText(candidate).width<=maxW)current=candidate;else{lines.push(current);current=word}}if(current)lines.push(current);if(lines.some(s=>ctx.measureText(s).width>maxW))return null;return lines.length<=maxLines?lines:null}
+function headline(text,x,y,maxW,fontsize,ink,align='left'){let f=fontsize,lines;for(;f>=25;f-=2){lines=titleLines(text,maxW,f,2);if(lines)break}if(!lines){lines=[text];while(ctx.measureText(lines[0]).width>maxW&&lines[0].length>2)lines[0]=lines[0].slice(0,-2)+'…'}ctx.textAlign=align;ctx.fillStyle=ink;ctx.textBaseline='top';ctx.font=`${state.font==='serif'?700:800} ${f}px ${fontFamily()}`;lines.forEach((s,i)=>ctx.fillText(s,x,y+i*f*1.14));return lines.length*f*1.14}
+function fittedText(text,x,y,maxW,maxLines,baseSize,color,align='left'){if(!text)return;ctx.save();ctx.textBaseline='top';ctx.textAlign=align;ctx.fillStyle=color;const words=String(text).trim().split(/\s+/).filter(Boolean);if(!words.length){ctx.restore();return}let size=baseSize,lines=[];for(;size>=13;size-=1){ctx.font=`700 ${size}px "Segoe UI",Arial,sans-serif`;lines=[];let cur='';for(const word of words){const t=cur?cur+' '+word:word;if(!cur||ctx.measureText(t).width<=maxW)cur=t;else{lines.push(cur);cur=word}}if(cur)lines.push(cur);if(lines.length<=maxLines&&lines.every(s=>ctx.measureText(s).width<=maxW))break}if(lines.length>maxLines){lines=lines.slice(0,maxLines);lines[maxLines-1]+='…'}lines=lines.map(t=>{if(ctx.measureText(t).width<=maxW)return t;let q=t;while(q.length&&ctx.measureText(q+'…').width>maxW)q=q.slice(0,-1);return q+'…'});lines.forEach((s,i)=>ctx.fillText(s,x,y+i*size*1.16));ctx.restore()}
+function drawPhoto(img,x,y,w,h,r,p){ctx.save();rect(x,y,w,h,r);ctx.clip();ctx.fillStyle=p.frame;ctx.fillRect(x,y,w,h);if(img){const iw=img.naturalWidth,ih=img.naturalHeight;if(iw&&ih){const scale=state.fit==='cover'?Math.max(w/iw,h/ih):Math.min(w/iw,h/ih);const tw=iw*scale,th=ih*scale;ctx.drawImage(img,x+(w-tw)/2,y+(h-th)/2,tw,th)}}else{drawPhotoPlaceholder(x,y,w,h,p)}ctx.restore()}
+function drawPhotoPlaceholder(x,y,w,h,p){const s=Math.min(w,h);ctx.fillStyle=p.soft;ctx.globalAlpha=.6;ctx.beginPath();ctx.arc(x+w*.74,y+h*.29,s*.14,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle=p.accent;ctx.globalAlpha=.25;ctx.beginPath();ctx.moveTo(x+w*.07,y+h*.88);ctx.lineTo(x+w*.37,y+h*.45);ctx.lineTo(x+w*.55,y+h*.7);ctx.lineTo(x+w*.73,y+h*.52);ctx.lineTo(x+w*.96,y+h*.88);ctx.fill();ctx.globalAlpha=1}
+function cellCaption(pht,x,y,w,h,p,index,style='overlay'){if(!state.captions)return;const text=pht?.caption||'';if(!text)return;const base=Math.min(30,Math.max(17,w*.039));if(style==='overlay'){const sh=Math.min(h*.28,Math.max(65,base*2.75));const gradient=ctx.createLinearGradient(0,y+h-sh,0,y+h);gradient.addColorStop(0,'#17111a00');gradient.addColorStop(1,'#1c1320cc');ctx.save();rect(x,y,w,h,state.radius);ctx.clip();ctx.fillStyle=gradient;ctx.fillRect(x,y+h-sh,w,sh);ctx.restore();fittedText(text,x+Math.max(13,w*.04),y+h-sh*.58,w-Math.max(26,w*.08),2,base,'#ffffff')}else{fittedText(text,x,y,w,2,base,p.ink)}}
+function frameCaptionFrame(ph,r,p,index){drawPhoto(ph?.img,r.x,r.y,r.w,r.h,state.radius,p);cellCaption(ph,r.x,r.y,r.w,r.h,p,index)}
+function gridRows(n,kind='grid'){
+ if(n<=0)return[];
+ if(n===1)return[1]; if(n===2)return[2]; if(n===3)return[2,1];
+ if(n===4)return[2,2];
+ if(n===5)return state.shape==='portrait'?[3,2]:[2,2,1];
+ // Шесть горизонтальных фото: 2 столбца х 3 ряда; для вертикальных: 3 х 2.
+ return state.shape==='portrait'?[3,3]:[2,2,2];
+}
+function placeRows(n,a,g,kind='grid'){const counts=gridRows(n,kind);let r=[],k=0;const rowH=(a.h-g*(counts.length-1))/counts.length;for(let i=0;i<counts.length;i++){const count=counts[i];const cw=(a.w-g*(count-1))/count;for(let j=0;j<count;j++)r.push({x:a.x+j*(cw+g),y:a.y+i*(rowH+g),w:cw,h:rowH,index:k++})}return r}
+function placeMagazine(n,a,g){
+ // В журнальном стиле с 4–6 фото сохраняем равный вес изображений,
+ // а журнал выражается типографикой, цветом и декоративными деталями.
+ if(n>=4)return placeRows(n,a,g,'grid');
+ if(n<=1)return[{...a,index:0}];
+ if(n===2)return placeRows(n,a,g,'grid');
+ const leftW=(a.w-g)*.52, right={x:a.x+leftW+g,y:a.y,w:a.w-leftW-g,h:a.h};
+ const rr=placeRows(n-1,right,g);return[{x:a.x,y:a.y,w:leftW,h:a.h,index:0},...rr.map((r,i)=>({...r,index:i+1}))]
+}
+function placeMosaic(n,a,g){
+ // Мозаика допускает только мягкую асимметрию, не вытянутые «щели».
+ const positions=placeRows(n,a,g);
+ if(n===4||(n===6&&state.shape!=='portrait')){const countRows=n===6?3:2;for(let row=0;row<countRows;row++){
+ const from=row*2;if(from+1>=positions.length)break;
+ const first=positions[from],second=positions[from+1],total=first.w+second.w;
+ const leftRatio=row%2===0?.54:.46;first.w=total*leftRatio;second.x=first.x+first.w+g;second.w=total-first.w;
+ }}return positions
+}
+function placeHero(n,a,g){
+ if(n<=2)return placeRows(n,a,g);
+ if(n===3){const topH=(a.h-g)*.49;return[{x:a.x,y:a.y,w:a.w,h:topH,index:0},...placeRows(2,{x:a.x,y:a.y+topH+g,w:a.w,h:a.h-topH-g},g).map((r,i)=>({...r,index:i+1}))]}
+ if(n===4||n===6){const topH=(a.h-g)*(n===4?.53:.47),count=n-2,top=placeRows(2,{x:a.x,y:a.y,w:a.w,h:topH},g),bottom=placeRows(count,{x:a.x,y:a.y+topH+g,w:a.w,h:a.h-topH-g},g);return[...top,...bottom.map((r,i)=>({...r,index:i+2}))]}
+ // Пять кадров: одно крупное сверху, остальные — полноценные карточки 2×2.
+ const topH=(a.h-g)*.38;return[{x:a.x,y:a.y,w:a.w,h:topH,index:0},...placeRows(4,{x:a.x,y:a.y+topH+g,w:a.w,h:a.h-topH-g},g).map((r,i)=>({...r,index:i+1}))]
+}
+function positionsFor(layout,n,a,g){if(layout==='editorial')return placeMagazine(n,a,g);if(layout==='mosaic')return placeMosaic(n,a,g);if(layout==='hero')return placeHero(n,a,g);return placeRows(n,a,g)}
+function drawCards(items,a,g,p){const positions=placeRows(items.length,a,Math.max(g+14,22),'cards');positions.forEach((r,i)=>{const paperPad=Math.max(10,Math.min(28,r.w*.052));const bottom=state.captions?Math.min(75,Math.max(43,r.h*.16)):paperPad;const x=r.x+3,y=r.y+3,w=r.w-6,h=r.h-6;ctx.save();ctx.shadowColor=p.shadow+'45';ctx.shadowBlur=13;ctx.shadowOffsetY=7;fill(x,y,w,h,Math.min(17,state.radius+5),p.paper);ctx.restore();fill(x,y,w,h,Math.min(17,state.radius+5),p.paper);const imgRect={x:x+paperPad,y:y+paperPad,w:w-2*paperPad,h:Math.max(24,h-paperPad-bottom)};drawPhoto(items[i]?.img,imgRect.x,imgRect.y,imgRect.w,imgRect.h,Math.min(state.radius,11),p);if(state.captions){const text=items[i]?.caption||'';if(text){fittedText(text,x+paperPad,y+h-bottom+Math.max(8,bottom*.16),w-2*paperPad,2,Math.min(25,Math.max(14,r.w*.04)),p.ink)}else if(state.mode==='journal'){fittedText(String(i+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0'),x+paperPad,y+h-bottom+12,w-2*paperPad,1,19,p.muted)}}})}
+function drawFilm(items,a,g,p){const count=items.length;const pos=placeRows(count,a,Math.max(g,7),'film');const bandDark='#35313a';pos.forEach((r,i)=>{fill(r.x,r.y,r.w,r.h,Math.min(10,state.radius),bandDark);const dot=Math.max(7,Math.min(17,r.w*.032)),top=Math.max(24,Math.min(41,r.h*.095));for(let side of [0,1]){const y=side?r.y+r.h-top*.61:r.y+top*.25;for(let x=r.x+top*.55;x<r.x+r.w-dot;x+=dot*2.7)fill(x,y,dot,dot,3,'#f4e8d8')}const capH=state.captions&&items[i]?.caption?Math.min(r.h*.16,74):0;const px=r.x+Math.min(18,r.w*.028),py=r.y+top,w=r.w-Math.min(36,r.w*.056),h=r.h-2*top-capH;drawPhoto(items[i]?.img,px,py,w,Math.max(25,h),Math.min(6,state.radius),p);if(capH)fittedText(items[i].caption,px,py+h+12,w,2,Math.min(23,r.w*.04),'#fbf8ed');})}
+function drawDecor(p,W,H,pad,mode,areaTop){ctx.fillStyle=p.bg;ctx.fillRect(0,0,W,H);ctx.save();ctx.globalAlpha=.12;ctx.fillStyle=p.accent;ctx.beginPath();ctx.arc(W*.95,H*.11,W*.14,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(-W*.035,H*.92,W*.13,0,Math.PI*2);ctx.fill();ctx.restore();fill(pad*.5,pad*.48,W-pad,H-pad*.96,state.mode==='journal'?13:25,p.paper);if(mode==='journal'){line(pad,areaTop-24,W-pad,areaTop-24,p.soft,2)}}
+function drawHeader(p,W,H,pad,top){const mode=state.mode;const headerX=pad+Math.max(3,W*.01),right=W-pad-Math.max(3,W*.01);const fontScale=W/1600;const eybrow=mode==='journal'?'АВТОРСКИЙ ЖУРНАЛ  /  ФОТОИСТОРИЯ':'МОЙ КОЛЛАЖ';ctx.textAlign=state.align;ctx.textBaseline='top';ctx.font=`800 ${Math.max(13,18*fontScale)}px "Segoe UI",Arial,sans-serif`;ctx.fillStyle=p.accent;const alignX=state.align==='center'?W/2:headerX;ctx.fillText(eybrow,alignX,top);
+const title=state.title.trim()||'Моя фотоистория';const maxTitle=right-headerX-10;const base=state.titleSize*fontScale;const titleTop=top+Math.max(31,44*fontScale);headline(title,alignX,titleTop,maxTitle,base,p.ink,state.align);
+if(mode==='journal'){const x=right,y=top+Math.max(45,55*fontScale);ctx.fillStyle=p.accent;ctx.beginPath();ctx.arc(x-5,y,4*fontScale,0,Math.PI*2);ctx.fill()}}
+// Фирменная мини-иконка на готовом PNG: две фотокарточки, искра и монограмма МБ.
+// На коллаже не выводим название мастерской, номер страницы или служебные подписи.
+function drawBrandSignature(p,W,H,pad){
+ ctx.save();
+ const k=W/1600;
+ const size=73*k;
+ const cx=W-pad-W*.01-size/2;
+ const cy=H-pad*.9;
+ ctx.translate(cx,cy);ctx.scale(k,k);
+ // Едва заметная тень; символ занимает только нижний правый угол.
+ ctx.save();ctx.rotate(-.20);ctx.shadowColor='rgba(60,44,70,.20)';ctx.shadowBlur=8;ctx.shadowOffsetY=3;
+ fill(-27,-24,47,50,9,'#afd6c6');ctx.restore();
+ ctx.save();ctx.rotate(.105);fill(-21,-22,47,51,9,p.accent);
+ ctx.lineWidth=2.5;ctx.strokeStyle=p.paper;ctx.beginPath();ctx.roundRect(-21,-22,47,51,9);ctx.stroke();
+ fill(-15,-15,35,33,5,'rgba(255,255,255,.13)');ctx.restore();
+ // МБ входит в композицию значка, а не выглядит обычной подписью.
+ ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='900 20px Arial,sans-serif';ctx.fillStyle='#fff';
+ ctx.fillText('МБ',3,7);
+ // Небольшая четырёхлучевая золотая искра.
+ ctx.beginPath();ctx.moveTo(24,-34);ctx.lineTo(28,-24);ctx.lineTo(38,-20);
+ ctx.lineTo(28,-16);ctx.lineTo(24,-6);ctx.lineTo(20,-16);ctx.lineTo(10,-20);ctx.lineTo(20,-24);ctx.closePath();
+ ctx.fillStyle='#e2b660';ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=p.paper;ctx.stroke();
+ ctx.restore();
+}
+function drawFooter(p,W,H,pad,n){
+ drawBrandSignature(p,W,H,pad);
+}
+function drawingArea(W,H){const ratio=W/1600,pad=Math.max(55,Math.round(W*.064));const headerH=(state.mode==='journal'?245:205)*ratio;const layoutTop=pad+headerH,bottom=H-pad*(state.mode==='journal'?1.23:.85);return {pad,top:pad*.72,layoutTop,a:{x:pad,y:layoutTop,w:W-pad*2,h:Math.max(50,bottom-layoutTop)},ratio}}
+function activeRects(items,a,g){return positionsFor(state.layout,items.length,a,state.layout==='cards'?Math.max(g+14,22):state.layout==='film'?Math.max(g,7):g)}
+function updateFrameSpecs(items,area,g){
+ const pos=activeRects(items,area,g);const minW=Math.round(Math.min(...pos.map(p=>p.w))),maxW=Math.round(Math.max(...pos.map(p=>p.w))),minH=Math.round(Math.min(...pos.map(p=>p.h))),maxH=Math.round(Math.max(...pos.map(p=>p.h)));
+ const uniform=pos.every(p=>Math.abs(p.w-pos[0].w)<2&&Math.abs(p.h-pos[0].h)<2);
+ const coords=pos.map((r,i)=>`${i+1}: ${Math.round(r.w)} × ${Math.round(r.h)} px`).join('  ·  ');
+ $('frameSpecs').textContent=(uniform?`Все ${pos.length} ${pos.length>=2&&pos.length<=4?'кадра':'кадров'}: ${minW} × ${minH} px. `:`Габариты ячеек: ${coords}. `)+(state.layout==='cards'||state.layout==='film'?'Внутри декоративной рамки фотографии чуть меньше.':'');
+ 
+ const r=uniform?pos[0]:pos.reduce((largest,cur)=>(cur.w*cur.h>largest.w*largest.h?cur:largest),pos[0]);
+ const recW=Math.round(r.w*2),recH=Math.round(r.h*2),aspect=(r.w/r.h).toFixed(2);
+ $('recommendedSize').textContent=uniform
+ ?`Для чёткой картинки подойдут исходники примерно от ${recW} × ${recH} px, с пропорцией около ${aspect}:1.`
+ :`Кадры отличаются по размеру. Для самого крупного ориентир — от ${recW} × ${recH} px. Менять размеры исходных фото заранее необязательно.`;
+ const count=visiblePhotos().length;const template=gridRows(count||4);
+ let advice=`Расположение: ${template.join(' + ')} ${template.length===1?'в одном ряду':'по рядам сверху вниз'}. `;
+ if(count>=5&&state.shape==='landscape'&&(state.size==='story'))advice+='Для 5–6 горизонтальных фото квадратный формат обычно читается лучше, чем сторис. ';
+ if(state.fit==='cover')advice+='Края фотографий могут обрезаться: при необходимости выберите «Показать целиком».';else advice+='Фотографии показываются полностью, возможны поля.';
+ $('ratioAdvice').textContent=advice;
+ let msg='';if(count===6&&state.shape==='landscape')msg='6 горизонтальных фото: 2 столбца × 3 ряда, без узких миниатюр.';
+ else if(count===6)msg='6 квадратных / вертикальных фото: 3 столбца × 2 ряда.';
+ else if(count===4)msg='4 фото: 2 столбца × 2 ряда, одинаковые размеры.';
+ else if(count===5)msg='5 фото: адаптивное размещение без узкой боковой колонки.';
+ else if(count===3)msg='3 фото: 2 сверху и 1 снизу (для журнального возможен акцент).';
+ else msg='Загрузите от 3 до 6 фотографий, чтобы подобрать схему.';
+ $('layoutHint').textContent=msg;
+}
+function draw(){const [W,H]=sizes[state.size];if(canvas.width!==W||canvas.height!==H){canvas.width=W;canvas.height=H}ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';const p=palettes[state.theme],geom=drawingArea(W,H),{pad,top,layoutTop,a,ratio}=geom;
+ drawDecor(p,W,H,pad,state.mode,layoutTop);
+ const items=visiblePhotos().length?visiblePhotos():Array.from({length:4},()=>null);
+ drawHeader(p,W,H,pad,top,items.filter(Boolean).length);
+ const g=state.gap*ratio;
+ if(state.layout==='cards')drawCards(items,a,g,p);
+ else if(state.layout==='film')drawFilm(items,a,g,p);
+ else positionsFor(state.layout,items.length,a,g).forEach((v,i)=>frameCaptionFrame(items[i],v,p,i));
+ drawFooter(p,W,H,pad,visiblePhotos().length);
+ updateFrameSpecs(items,a,g);
+}
+function randomChoice(a){return a[Math.floor(Math.random()*a.length)]}
+function surprise(){const prev=state.layout+'|'+state.theme+'|'+state.mode+'|'+state.font;for(let i=0;i<8;i++){state.layout=randomChoice(['grid','grid','cards','editorial','mosaic','film','hero']);state.theme=randomChoice(Object.keys(palettes));state.mode=randomChoice(['journal','journal','simple']);state.font=randomChoice(['serif','sans','soft']);if(state.layout+'|'+state.theme+'|'+state.mode+'|'+state.font!==prev)break}state.gap=randomChoice([10,18,24,32]);state.radius=randomChoice([4,12,20,32]);state.titleSize=randomChoice([58,70,78]);sync();toast('Новое оформление готово! ✨');kubikReact('wink','Новый вариант готов! Можно попробовать ещё или скачать коллаж.')}
+function clear(){version++;state.photos.forEach(p=>URL.revokeObjectURL(p.url));state.photos=[];Object.assign(state,defaults);$('fileInput').value='';note('');sync();toast('Готово. Можно создать новый коллаж.');kubikReact('wave','Начнём новую фотоисторию! Добавьте фотографии.')}
+function download(){if(visiblePhotos().length<MIN){note('Для скачивания добавьте минимум 3 изображения.');return}draw();const btn=$('download');btn.disabled=true;const old=btn.textContent;btn.textContent='Подготавливаем PNG…';canvas.toBlob(blob=>{btn.disabled=false;btn.textContent=old;if(!blob){note('Не удалось создать PNG. Попробуйте обновить страницу.');return}const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`moy-kollazh-${sizes[state.size].join('x')}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);toast('Коллаж сохранён в PNG!');kubikReact('celebrate','Готово! Ваш коллаж сохранён на устройство в формате PNG.')},'image/png')}
+$('dropZone').addEventListener('click',()=>$('fileInput').click());$('dropZone').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('fileInput').click()}});$('fileInput').addEventListener('change',e=>addFiles(e.target.files));for(const name of ['dragenter','dragover'])$('dropZone').addEventListener(name,e=>{e.preventDefault();$('dropZone').classList.add('dragging')});for(const name of ['dragleave','dragend'])$('dropZone').addEventListener(name,e=>{e.preventDefault();$('dropZone').classList.remove('dragging')});$('dropZone').addEventListener('drop',e=>{e.preventDefault();$('dropZone').classList.remove('dragging');addFiles(e.dataTransfer.files)});
+document.querySelectorAll('[data-key]').forEach(b=>b.addEventListener('click',()=>{state[b.dataset.key]=b.dataset.value;sync()}));$('title').addEventListener('input',e=>{state.title=e.target.value;schedule()});for(const key of ['font','align'])$(key).addEventListener('change',e=>{state[key]=e.target.value;schedule()});for(const key of ['titleSize','gap','radius'])$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);$(key+'Out').textContent=state[key];schedule()});$('visibleCount').addEventListener('change',e=>{state.visibleCount=e.target.value;sync()});$('captions').addEventListener('change',e=>{state.captions=e.target.checked;schedule()});$('surprise').addEventListener('click',surprise);$('clear').addEventListener('click',clear);$('download').addEventListener('click',download);window.addEventListener('beforeunload',()=>state.photos.forEach(p=>URL.revokeObjectURL(p.url)));sync();
+})();
+</script>
+<!-- Автономный Кубик Мастерской: исходный kubik-master.js из ZIP встроен целиком. -->
+<script>
+window.KUBIK_CONFIG={mode:"teacher",corner:"right",autoStart:true};
+/*
+  КУБИК МАСТЕРСКОЙ — анимированный HTML-помощник v2.0.
+  ОДИН исходный JS-файл: SVG, стили, анимация и логика встроены.
+  Для добавления в другое приложение передайте этот файл в чат с приложением
+  и попросите вставить ВЕСЬ его код внутрь итогового HTML.
+  Использование после загрузки: KubikHelper.say('Подсказка'),
+  KubikHelper.celebrate(), .wink(), .wave(), .collapse(), .expand(),
+  .enable(), .disable(), .setMode('child' или 'teacher'), .setCorner('left').
+  Не требует интернета, библиотек и внешних изображений.
+*/
+(() => {
+  'use strict';
+  if (window.KubikHelper) return;
+  const tag = document.currentScript;
+  const custom = window.KUBIK_CONFIG || {};
+  const initialMode = (tag?.dataset.mode || custom.mode) === 'child' ? 'child' : 'teacher';
+  const initialCorner = (tag?.dataset.corner || custom.corner) === 'left' ? 'left' : 'right';
+  const autoStart = tag?.dataset.auto !== 'false' && custom.autoStart !== false;
+
+  const state = {
+    mode: initialMode, corner: initialCorner, enabled: true, collapsed: false,
+    root: null, dock: null, face: null, mini: null, tip: null, tipText: null,
+    bubbleTimeout: 0, emoteTimeout: 0, clickBlocked: false, dragged: false
+  };
+
+  const SVG = `<svg class="character" viewBox="0 0 200 206" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Дружелюбный кубик с жёлтой улыбкой и разноцветными гранями">
+  <defs>
+    <linearGradient id="yellowFront" x1="0" y1="0" x2=".95" y2="1"><stop stop-color="#fff9b2"/><stop offset=".46" stop-color="#ffdb43"/><stop offset="1" stop-color="#f9a925"/></linearGradient>
+    <linearGradient id="blueSide" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#69d5ff"/><stop offset="1" stop-color="#5277d7"/></linearGradient>
+    <linearGradient id="purpleTop" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#bb92fb"/><stop offset="1" stop-color="#8064e8"/></linearGradient>
+    <linearGradient id="shoe" x1="0" x2="1"><stop stop-color="#7454d4"/><stop offset="1" stop-color="#42358c"/></linearGradient>
+  </defs>
+  <ellipse cx="102" cy="195" rx="69" ry="7" fill="#483b7c" opacity=".16"/>
+  <g class="body">
+    <g class="legs">
+      <path d="M80 155 Q75 167 75 177" stroke="#694eca" stroke-width="13" stroke-linecap="round"/>
+      <path d="M133 155 Q138 169 137 178" stroke="#694eca" stroke-width="13" stroke-linecap="round"/>
+      <path d="M50 176 Q48 166 70 167 Q89 165 96 182 Q99 190 91 193 L55 193 Q44 192 50 176Z" fill="url(#shoe)" stroke="#49368f" stroke-width="2"/>
+      <path d="M120 181 Q125 167 145 168 Q164 167 168 182 Q170 191 159 193 H123 Q117 192 120 181Z" fill="url(#shoe)" stroke="#49368f" stroke-width="2"/>
+      <path d="M50 184 Q66 189 95 184 M121 184 Q147 188 168 183" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <g class="left-arm"><path d="M43 105 Q22 115 16 96" fill="none" stroke="#6a56b8" stroke-width="12" stroke-linecap="round"/>
+      <path d="M12 97 C0 96 0 81 9 79 Q14 71 22 80 Q27 87 25 94 Q20 101 12 97Z" fill="#fff8fb" stroke="#c7b4e9" stroke-width="2"/></g>
+    <g class="right-arm"><path d="M157 105 Q181 102 183 72" fill="none" stroke="#7659c8" stroke-width="12" stroke-linecap="round"/>
+      <path d="M174 66 Q164 57 170 50 Q175 46 181 55 Q175 42 183 40 Q192 38 191 52 Q191 40 198 43 Q205 49 195 65 Q189 78 177 75Z" fill="#fff9fb" stroke="#c7b4e9" stroke-width="2"/></g>
+    <path d="M40 41 L63 24 Q72 18 83 20 L159 31 Q170 33 171 45 L171 134 Q171 148 155 157 L65 163 Q41 164 36 145Z" fill="url(#blueSide)" stroke="#5272c2" stroke-width="2.5"/>
+    <path d="M40 42 L61 25 Q70 18 83 20 L159 29 Q174 35 172 46 L154 57 L50 58Z" fill="url(#purpleTop)" stroke="#7057b9" stroke-width="2.5"/>
+    <path d="M38 58 Q39 43 58 43 H151 Q166 43 166 60 V141 Q166 157 149 157 H55 Q38 157 38 140Z" fill="url(#yellowFront)" stroke="#ebad2d" stroke-width="3"/>
+    <path d="M49 58 Q50 50 60 50 H145" stroke="#fffed7" stroke-width="4" opacity=".6" stroke-linecap="round" fill="none"/>
+    <path d="M65 32 l3 5 6 1 -5 4 1 6 -5 -3 -5 3 1 -6 -5 -4 6 -1Z" fill="#ffe77e" opacity=".95"/>
+    <path d="M20 76 l-2 -10 7 2 3 -7 4 7 7 -1 -3 8 5 7 -9 -1 -4 8 -3 -9Z" fill="#ffd257" opacity=".8"/>
+    <path d="M62 79 Q72 72 84 78 M122 77 Q132 72 144 78" stroke="#6d3e3e" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <g class="eyes">
+      <g class="eye-left"><ellipse cx="78" cy="101" rx="14" ry="20" fill="#fffefc"/><ellipse cx="81" cy="102" rx="8" ry="13" fill="#58383c"/><circle cx="84" cy="95" r="4" fill="white"/></g>
+      <g class="eye-right"><ellipse cx="134" cy="99" rx="14" ry="20" fill="#fffefc"/><ellipse cx="136" cy="100" rx="8" ry="13" fill="#58383c"/><circle cx="139" cy="93" r="4" fill="white"/></g>
+    </g>
+    <ellipse cx="57" cy="121" rx="12" ry="7" fill="#f89a9f" opacity=".72"/>
+    <ellipse cx="153" cy="120" rx="10" ry="7" fill="#f89a9f" opacity=".72"/>
+    <path class="mouth" d="M91 124 Q105 144 121 123 Q113 145 104 145 Q94 144 91 124Z" fill="#9d4253" stroke="#7a4352" stroke-width="1.5"/>
+    <path d="M103 140 Q111 134 117 138" stroke="#ff91a5" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M39 139 Q54 154 76 155" stroke="#fff1aa" stroke-width="2" opacity=".55" fill="none"/>
+    <g class="party"><path d="M17 36 l4 8 9 2 -8 5 1 9 -7 -6 -9 4 2 -9 -7 -6 9 -1Z" fill="#f2ab32"/><path d="M184 32 l4 8 9 1 -7 6 1 8 -7 -5 -9 4 2 -9 -7 -5 9 -2Z" fill="#ae7be9"/></g>
+  </g>
+  </svg>`;
+
+  const STYLE = `
+    :host{ all:initial; color-scheme:light; font-family:Inter, system-ui,-apple-system,"Segoe UI",Arial,sans-serif; }
+    *,*::before,*::after{box-sizing:border-box}
+    .dock{position:fixed;right:var(--offset,12px);bottom:var(--bottom,12px);z-index:2147482000;pointer-events:none;--size:96px;font-family:inherit;}
+    .dock.left{left:var(--offset,12px);right:auto}
+    .dock.teacher{--size:76px}.dock.child{--size:96px}
+    .dock.dragged{right:auto;bottom:auto;left:12px;top:12px}
+    .dock.hidden{display:none}
+    button{font-family:inherit;cursor:pointer}
+    .character-btn{position:relative;display:block;width:var(--size);height:calc(var(--size)*1.06);border:0;background:transparent;padding:0;pointer-events:auto;cursor:grab;outline-offset:3px;touch-action:none;user-select:none;-webkit-user-select:none;}
+    .character-btn:active{cursor:grabbing}
+    .character-btn:focus-visible,.minimized:focus-visible,.collapse:focus-visible,.tip-close:focus-visible{outline:3px solid #5b47c2;outline-offset:3px;border-radius:12px}
+    .character{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 5px 5px rgba(45,36,101,.13))}
+    .body{transform-origin:50% 78%;animation:sway 6s ease-in-out infinite}
+    .eye-left,.eye-right{transform-box:fill-box;transform-origin:center;animation:blink 6.8s infinite}
+    .mouth{transform-box:fill-box;transform-origin:center}
+    .right-arm{transform-box:fill-box;transform-origin:10% 90%}
+    .party{opacity:0;transform-box:fill-box;transform-origin:center}
+    .wave .right-arm{animation:wave .48s ease-in-out 3 alternate}
+    .celebrate .body{animation:hop .55s cubic-bezier(.2,.8,.3,1) 2}
+    .celebrate .party{animation:stars 1.1s ease-out 1}
+    .wink .eye-left{animation:winkEye .50s ease-in-out 1}
+    .wink .eye-right{animation:none}
+    .celebrate .mouth{animation:bigSmile .55s ease-in-out 2}
+    .collapse{position:absolute;right:-3px;top:0;width:23px;height:23px;border:1px solid #e2def6;border-radius:50%;background:#fff;color:#6a589e;font-size:18px;line-height:18px;font-weight:700;box-shadow:0 2px 9px #6154a333;pointer-events:auto}
+    .collapse:hover{background:#f1edff}
+    .minimized{display:none;pointer-events:auto;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:linear-gradient(130deg,#fff29c,#f9b531);color:#633e70;font-size:24px;box-shadow:0 2px 10px #47367a3a;}
+    .dock.min .character-btn,.dock.min .collapse{display:none}
+    .dock.min .minimized{display:block}
+    .tip{position:absolute;right:calc(var(--size) + 15px);bottom:6px;width:225px;max-width:min(225px,calc(100vw - 25px));padding:15px 34px 15px 14px;border:1px solid #e5dbfa;border-radius:17px;background:#fff;box-shadow:0 9px 30px #43357429;font-size:13px;font-weight:500;line-height:1.42;color:#3f3754;pointer-events:auto;display:none;}
+    .left .tip{right:auto;left:calc(var(--size) + 15px)}
+    .tip.open{display:block;animation:pop .2s ease-out}
+    .tip::after{display:none;content:'';position:absolute;bottom:-7px;right:25px;width:12px;height:12px;transform:rotate(45deg);background:#fff;border-right:1px solid #e5dbfa;border-bottom:1px solid #e5dbfa;}
+    .left .tip::after{right:auto;left:25px}
+    .tip-close{position:absolute;right:9px;top:7px;border:0;background:transparent;color:#7b7192;font-size:20px;padding:0 4px}
+    .tip-title{display:block;color:#6a47a8;font-size:12px;font-weight:800;letter-spacing:.01em;margin-bottom:4px}
+    .tip-content{display:block;overflow-wrap:anywhere}
+    @keyframes blink{0%,43%,45%,100%{transform:scaleY(1)}44%{transform:scaleY(.08)}}
+    @keyframes winkEye{0%,100%{transform:scaleY(1)}40%,60%{transform:scaleY(.07)}}
+    @keyframes bigSmile{0%,100%{transform:scale(1)}45%{transform:scale(1.16)}}
+    @keyframes sway{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-2px) rotate(1deg)}}
+    @keyframes wave{from{transform:rotate(0)}to{transform:rotate(-21deg)}}
+    @keyframes hop{0%,100%{transform:translateY(0) rotate(0)}45%{transform:translateY(-16px) rotate(7deg)}}
+    @keyframes stars{0%{opacity:0;transform:scale(.5)}25%,65%{opacity:1;transform:scale(1.05)}100%{opacity:0;transform:scale(1.4)}}
+    @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media (max-width:600px){.dock.teacher{--size:64px}.dock.child{--size:78px}.dock{--offset:7px;--bottom:7px}.tip{width:205px;bottom:6px}}
+    @media (prefers-reduced-motion:reduce){.body,.eye-left,.eye-right,.wave .right-arm,.celebrate .body,.celebrate .party,.celebrate .mouth,.wink .eye-left,.tip.open{animation:none!important}}
+  `;
+
+
+  const setClass = (value, on, node = state.face) => node?.classList.toggle(value, on);
+  const resetEmote = () => {
+    clearTimeout(state.emoteTimeout);
+    ['wave','wink','celebrate'].forEach(x=>setClass(x,false));
+    // Reflow restarts CSS animation even after repeated button clicks.
+    if (state.face) void state.face.offsetWidth;
+  };
+  function emote(what, duration) {
+    if (!state.enabled || state.collapsed || !state.face) return;
+    resetEmote(); setClass(what,true);
+    state.emoteTimeout=setTimeout(()=>setClass(what,false),duration);
+  }
+  function hideTip() {
+    if (!state.tip) return;
+    clearTimeout(state.bubbleTimeout);
+    state.tip.classList.remove('open');
+  }
+  function say(text, timeout=6500) {
+    if (!state.enabled || !state.tip) return;
+    expand();
+    state.tipText.textContent=String(text).slice(0,240);
+    state.tip.classList.add('open');
+    clearTimeout(state.bubbleTimeout);
+    if (timeout>0) state.bubbleTimeout=setTimeout(hideTip, timeout);
+  }
+  function setMode(mode) {
+    state.mode=mode==='child' ? 'child' : 'teacher';
+    state.dock?.classList.toggle('teacher',state.mode==='teacher');
+    state.dock?.classList.toggle('child',state.mode==='child');
+  }
+  function setCorner(corner) {
+    state.corner=corner==='left' ? 'left' : 'right';
+    if(state.dock){
+      state.dock.classList.remove('dragged');
+      state.dock.style.removeProperty('left');
+      state.dock.style.removeProperty('right');
+      state.dock.style.removeProperty('top');
+      state.dock.style.removeProperty('bottom');
+      state.dock.classList.toggle('left',state.corner==='left');
+    }
+  }
+  function collapse() {
+    hideTip();state.collapsed=true;
+    state.dock?.classList.add('min');
+  }
+  function expand() {
+    state.collapsed=false;state.dock?.classList.remove('min');
+  }
+  function disable(){state.enabled=false;hideTip();state.dock?.classList.add('hidden');}
+  function enable(){state.enabled=true;state.dock?.classList.remove('hidden');}
+  function toggle(){state.enabled ? disable() : enable();}
+  function greet(){emote('wave',1600);}
+  function wink(){emote('wink',650);}
+  function celebrate(){emote('celebrate',1250);}
+
+  function init() {
+    if (state.root || !document.body) return;
+    const root = document.createElement('div');
+    root.id='kubik-assistant-host';
+    // The assistant is isolated from the parent page's CSS to avoid breaking HTML boards.
+    const shadow=root.attachShadow({mode:'open'});
+    shadow.innerHTML=`<style>${STYLE}</style>
+      <aside class="dock teacher" aria-label="Кубик-помощник">
+        <button type="button" class="character-btn" aria-label="Открыть подсказку кубика" title="Кубик-помощник: нажмите для подсказки, перетащите для перемещения">${SVG}</button>
+        <button type="button" class="collapse" aria-label="Свернуть кубика" title="Свернуть кубика">×</button>
+        <button type="button" class="minimized" aria-label="Развернуть кубика" title="Развернуть кубика">★</button>
+        <section class="tip" role="status" aria-live="polite"><span class="tip-title">Кубик подсказывает</span><span class="tip-content"></span><button type="button" class="tip-close" aria-label="Закрыть подсказку">×</button></section>
+      </aside>`;
+    document.body.appendChild(root);
+    state.root=root;
+    state.dock=shadow.querySelector('.dock');
+    state.face=shadow.querySelector('.character-btn');
+    state.mini=shadow.querySelector('.minimized');
+    state.tip=shadow.querySelector('.tip');
+    state.tipText=shadow.querySelector('.tip-content');
+    setMode(state.mode);setCorner(state.corner);
+    // По умолчанию помощник виден на каждом новом HTML, независимо от других сайтов.
+    shadow.querySelector('.collapse').addEventListener('click', (e)=>{e.stopPropagation();collapse()});
+    state.mini.addEventListener('click',()=>{enable();expand();greet()});
+    shadow.querySelector('.tip-close').addEventListener('click',hideTip);
+    shadow.addEventListener('keydown',(e)=>{if(e.key==='Escape')hideTip()});
+    state.face.addEventListener('mouseenter',()=>{if(!dragging)wink()});
+
+    let dragging=null;
+    state.face.addEventListener('pointerdown',e=>{
+      if(e.button!==0) return;
+      const b=state.dock.getBoundingClientRect();
+      dragging={px:e.clientX,py:e.clientY,x:b.left,y:b.top,started:false};
+      try{state.face.setPointerCapture(e.pointerId)}catch{}
+    });
+    state.face.addEventListener('pointermove',e=>{
+      if(!dragging) return;
+      const dx=e.clientX-dragging.px,dy=e.clientY-dragging.py;
+      if(!dragging.started && Math.hypot(dx,dy)<7) return;
+      dragging.started=true;state.dragged=true;
+      hideTip();state.dock.classList.add('dragged');
+      state.dock.classList.remove('left');
+      const w=state.dock.getBoundingClientRect().width, h=state.dock.getBoundingClientRect().height;
+      const x=Math.max(4,Math.min(innerWidth-w-4,dragging.x+dx));
+      const y=Math.max(4,Math.min(innerHeight-h-4,dragging.y+dy));
+      state.dock.style.left=`${x}px`;state.dock.style.top=`${y}px`;
+    });
+    function dragEnd(){
+      if(dragging?.started){state.clickBlocked=true;setTimeout(()=>{state.clickBlocked=false},0)}
+      dragging=null;
+    }
+    state.face.addEventListener('pointerup',dragEnd);
+    state.face.addEventListener('pointercancel',dragEnd);
+    state.face.addEventListener('click',()=>{
+      if(state.clickBlocked) return;
+      if(state.tip.classList.contains('open')) {hideTip();return;}
+      say(state.mode==='teacher'?'Привет! Добавьте 3–6 фотографий, выберите оформление и скачайте красивый коллаж. Меня можно свернуть или перенести.':'Привет! Давай выполнять задания вместе!');
+      wink();
+    });
+    if(!state.collapsed) setTimeout(()=>greet(),650);
+  }
+
+  window.KubikHelper={init,enable,disable,toggle,collapse,expand,setMode,setCorner,
+    say,celebrate,wink,wave:greet,hideTip,
+    isEnabled:()=>state.enabled,isCollapsed:()=>state.collapsed};
+  if(autoStart){
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+    else init();
+  }
+})();
+
+</script>
+</body>
+</html>
